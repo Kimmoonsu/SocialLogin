@@ -1,0 +1,36 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 294651237830-0mbsdql6nofhs31hh6qvmpg2a10bq5ls.apps.googleusercontent.com
+              client-secret: KeZ2hrD-LgKVoaRCtLLe_-uS
+#               redirectUri: "http://localhost:8080/auth/google/callback"
+              scope: email, profile
+  devtools:
+    livereload:
+      enabled: true
+      freemarker:
+        cache: false
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/test
+    username: sa
+    driverClassName: org.h2.Driver
+
+app:
+  auth:
+    tokenSecret: [TOKEN_SECRET]
+    # ex) tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+    tokenExpirationMsec: [EXPIRATION_MSEC]
+    # ex) tokenExpirationMsec: 864000000
+  oauth2:
+    authorizedRedirectUris:
+      - http://localhost:3000/oauth2/redirect
+
+
+
