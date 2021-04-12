@@ -4,15 +4,17 @@ spring:
       client:
         registration:
           google:
-            client-id: 294651237830-0mbsdql6nofhs31hh6qvmpg2a10bq5ls.apps.googleusercontent.com
-              client-secret: KeZ2hrD-LgKVoaRCtLLe_-uS
-#               redirectUri: "http://localhost:8080/auth/google/callback"
-              scope: email, profile
+            clientId: 294651237830-0mbsdql6nofhs31hh6qvmpg2a10bq5ls.apps.googleusercontent.com
+            clientSecret: KeZ2hrD-LgKVoaRCtLLe_-uS
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - profile
   devtools:
     livereload:
       enabled: true
-      freemarker:
-        cache: false
+    freemarker:
+      cache: false
   jpa:
     show-sql: true
     hibernate:
@@ -24,13 +26,14 @@ spring:
 
 app:
   auth:
-    tokenSecret: [TOKEN_SECRET]
-    # ex) tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
-    tokenExpirationMsec: [EXPIRATION_MSEC]
-    # ex) tokenExpirationMsec: 864000000
-  oauth2:
-    authorizedRedirectUris:
-      - http://localhost:3000/oauth2/redirect
-
-
-
+    tokenSecret: LMurn7YmGHqkddbo98cWaa4d4ILqSSeN
+    tokenExpirationMsec: 864000000
+    oauth2:
+      # After successfully authenticating with the OAuth2 Provider,
+      # we'll be generating an auth token for the user and sending the token to the
+      # redirectUri mentioned by the frontend client in the /oauth2/authorize request.
+      # We're not using cookies because they won't work well in mobile clients.
+      authorizedRedirectUris:
+        - http://localhost:8080/oauth2/redirect
+  #      - myandroidapp://oauth2/redirect
+  #      - myiosapp://oauth2/redirect
