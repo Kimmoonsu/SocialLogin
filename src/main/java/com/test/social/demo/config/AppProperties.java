@@ -20,12 +20,16 @@ public class AppProperties {
     @RequiredArgsConstructor
     public static class Auth {
         private String tokenSecret;
+        private String refreshTokenSecret;
         private long tokenExpirationMsec;
+        private long refreshTokenExpirationMsec;
 
         @Builder
-        public Auth(String tokenSecret, long tokenExpirationMsec) {
+        public Auth(String tokenSecret, String refreshTokenSecret, long tokenExpirationMsec, long refreshTokenExpirationMsec) {
             this.tokenSecret = tokenSecret;
+            this.refreshTokenSecret = refreshTokenSecret;
             this.tokenExpirationMsec = tokenExpirationMsec;
+            this.refreshTokenExpirationMsec = refreshTokenExpirationMsec;
         }
     }
 
