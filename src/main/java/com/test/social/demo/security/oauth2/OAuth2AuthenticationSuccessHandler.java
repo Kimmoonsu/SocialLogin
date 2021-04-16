@@ -61,7 +61,9 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         }
 
         String targetUrl = redirectUri.orElse(getDefaultTargetUrl());
-
+        targetUrl = "http://localhost:8080/oauth2/redirect";
+        // 1. targetUrl을 못읽어온다.
+        // 2. 토큰을 이상하게 만든다.
         String token = tokenProvider.createToken(authentication);
 
         return UriComponentsBuilder.fromUriString(targetUrl)

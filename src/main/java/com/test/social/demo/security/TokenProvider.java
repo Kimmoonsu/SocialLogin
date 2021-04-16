@@ -43,7 +43,7 @@ public class TokenProvider {
         return Long.parseLong(claims.getSubject());
     }
 
-    public boolean validateToken(String authToken) {
+    public boolean validateToken(String authToken) throws Exception {
         try {
             Jwts.parser().setSigningKey(appProperties.getAuth().getTokenSecret()).parseClaimsJws(authToken);
             return true;
@@ -53,6 +53,7 @@ public class TokenProvider {
             logger.error("유효하지 않은 JWT 토큰");
         } catch (ExpiredJwtException ex) {
             logger.error("만료된 JWT 토큰");
+            throw new Exception("만료된 JWT 토큰");
         } catch (UnsupportedJwtException ex) {
             logger.error("지원하지 않는 JWT 토큰");
         } catch (IllegalArgumentException ex) {
